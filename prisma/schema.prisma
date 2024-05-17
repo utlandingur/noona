@@ -15,7 +15,6 @@ model User {
   scopes    String[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @default(now())
-
   @@map("users")
 }
 
