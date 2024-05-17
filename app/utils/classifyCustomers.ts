@@ -1,6 +1,6 @@
 import { EXPECTED_FREQUENCY } from 'GLOBAL';
 
-interface customerClassification {
+export interface customerClassification {
 	new: any[];
 	loyal: any[];
 	atRisk: any[];
