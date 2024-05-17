@@ -47,11 +47,10 @@ function LoyaltyTable({ type }: LoyaltyTableProps) {
 interface TableContentProps {
 	users: {
 		name: string;
-		email: string;
-		telephone: string;
-		lastVisited: string;
-		contactedRecently: string;
-		totalSpent: string;
+		phone_number: string;
+		last_event: string;
+		event_count: number;
+		last_employee: string;
 	}[];
 }
 
@@ -62,17 +61,16 @@ const TableContent = ({ users }: TableContentProps) => {
 				{users.map((user, index) => (
 					<TableRow key={index}>
 						<TableCell>{user?.name}</TableCell>
-						<TableCell>{user?.email}</TableCell>
-						<TableCell>{user?.telephone}</TableCell>
-						<TableCell>{user?.lastVisited}</TableCell>
-						<TableCell>{user?.contactedRecently}</TableCell>
-						<TableCell className="text-right">{user?.totalSpent}</TableCell>
+						<TableCell>{user?.phone_number}</TableCell>
+						<TableCell>{user?.last_event}</TableCell>
+						<TableCell>{user?.event_count}</TableCell>
+						<TableCell>{user?.last_employee}</TableCell>
 					</TableRow>
 				))}
 			</TableBody>
 			<TableFooter>
 				<TableRow>
-					<TableCell colSpan={4}>Total users</TableCell>
+					<TableCell colSpan={5}>Total users</TableCell>
 					<TableCell className="text-right">{users.length}</TableCell>
 				</TableRow>
 			</TableFooter>
