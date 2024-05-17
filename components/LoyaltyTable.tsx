@@ -1,7 +1,5 @@
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '~/@/components/ui/table';
-import { invoices, mockUsers } from '../__mocks__/users';
 import { loyaltyType } from 'GLOBAL';
-import { useEffect, useState } from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '~/@/components/ui/accordion';
 import useLoyaltyHook from 'hooks/useLoyaltyHook';
 
@@ -26,20 +24,20 @@ function LoyaltyTable({ type }: LoyaltyTableProps) {
 				</AccordionTrigger>
 				<AccordionContent>
 					<p>adad</p>
-					{/* <Table>
-							<TableCaption>A list of your {amendedType} users.</TableCaption>
-							<TableHeader>
-								<TableRow>
-									<TableHead className="w-[100px]">Name</TableHead>
-									<TableHead>Email</TableHead>
-									<TableHead>Telephone</TableHead>
-									<TableHead>Last visited</TableHead>
-									<TableHead>Contacted recently</TableHead>
-									<TableHead className="text-right">Total spent</TableHead>
-								</TableRow>
-							</TableHeader>
-							{users ? <TableContent users={users} /> : <EmptyTableContent />}
-						</Table> */}
+					<Table>
+						<TableCaption>A list of your {amendedType} users.</TableCaption>
+						<TableHeader>
+							<TableRow>
+								<TableHead className="w-[100px]">Name</TableHead>
+								<TableHead>Email</TableHead>
+								<TableHead>Telephone</TableHead>
+								<TableHead>Last visited</TableHead>
+								<TableHead>Contacted recently</TableHead>
+								<TableHead className="text-right">Total spent</TableHead>
+							</TableRow>
+						</TableHeader>
+						{users ? <TableContent users={users} /> : <EmptyTableContent />}
+					</Table>
 				</AccordionContent>
 			</AccordionItem>
 		</Accordion>
@@ -79,7 +77,11 @@ const TableContent = ({ users }: TableContentProps) => {
 				</TableRow>
 			</TableFooter>
 		</>
-	) : (
+	) : null;
+};
+
+const EmptyTableContent = () => {
+	return (
 		<TableBody>
 			<TableRow>
 				<TableCell colSpan={5}>No users found</TableCell>
