@@ -1,3 +1,12 @@
+# Hackathon entry
+The idea is to categorise an establishments users on their calculated loytalty.
+You can then see the health of your user base, manually contact them or setup automatic campaigns to send them discount codes and personalised messages in an email to protect the churn or re-engage someone who left.
+
+*Won 2nd place*
+
+Not all features were able to be fully implemented in the time.
+
+
 # app-template-remix
 
 This is a template repository for quickly bootstrapping a Noona HQ app.
