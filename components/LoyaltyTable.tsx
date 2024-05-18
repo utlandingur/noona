@@ -23,17 +23,16 @@ function LoyaltyTable({ type }: LoyaltyTableProps) {
 					</div>
 				</AccordionTrigger>
 				<AccordionContent>
-					<p>adad</p>
 					<Table>
 						<TableCaption>A list of your {amendedType} users.</TableCaption>
 						<TableHeader>
 							<TableRow>
 								<TableHead className="w-[100px]">Name</TableHead>
-								<TableHead>Email</TableHead>
-								<TableHead>Telephone</TableHead>
-								<TableHead>Last visited</TableHead>
-								<TableHead>Contacted recently</TableHead>
-								<TableHead className="text-right">Total spent</TableHead>
+								<TableHead>Phone number</TableHead>
+								<TableHead>Last booking</TableHead>
+								<TableHead>Last seen by</TableHead>
+
+								<TableHead className="text-right">Total bookings</TableHead>
 							</TableRow>
 						</TableHeader>
 						{users ? <TableContent users={users} /> : <EmptyTableContent />}
@@ -63,14 +62,14 @@ const TableContent = ({ users }: TableContentProps) => {
 						<TableCell>{user?.name}</TableCell>
 						<TableCell>{user?.phone_number}</TableCell>
 						<TableCell>{user?.last_event}</TableCell>
-						<TableCell>{user?.event_count}</TableCell>
 						<TableCell>{user?.last_employee}</TableCell>
+						<TableCell className="text-right">{user?.event_count}</TableCell>
 					</TableRow>
 				))}
 			</TableBody>
 			<TableFooter>
 				<TableRow>
-					<TableCell colSpan={5}>Total users</TableCell>
+					<TableCell colSpan={4}>Total users</TableCell>
 					<TableCell className="text-right">{users.length}</TableCell>
 				</TableRow>
 			</TableFooter>

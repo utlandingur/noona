@@ -17,7 +17,7 @@ export function classifyCustomers(customers: any[]) {
 		lost: [],
 	};
 	customers.forEach((customer) => {
-		const lastEventDate = new Date(customer.lastEvent);
+		const lastEventDate = new Date(customer.last_event);
 		const today = new Date();
 		const daysSinceLastEvent = Math.round((today.getMilliseconds() - lastEventDate.getMilliseconds()) / (1000 * 60 * 60 * 24));
 		if (daysSinceLastEvent < EXPECTED_FREQUENCY * 1) {

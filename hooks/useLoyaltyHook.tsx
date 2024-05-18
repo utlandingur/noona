@@ -2,20 +2,14 @@ import { useLoaderData } from '@remix-run/react';
 import { listCustomers } from 'api/customers';
 import { useEffect, useState } from 'react';
 import { loader } from '~/routes/home';
-import { classifyCustomers, customerClassification } from '~/utils/classifyCustomers';
-
-type LoyaltyUserInfo = {
-	name: string;
-	email: string;
-	telephone: string;
-	lastVisited: string;
-	contactedRecently: string;
-	totalSpent: string;
-};
+import { classifyCustomers } from '~/utils/classifyCustomers';
 
 const useLoyaltyHook = (type: string) => {
 	const { user } = useLoaderData<typeof loader>();
 
+	const [allCustomers, setAllCustomers] = useState<any[]>();
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const [customers, setCustomers] = useState<any[]>();
 
 	useEffect(() => {
@@ -30,25 +24,34 @@ const useLoyaltyHook = (type: string) => {
 						},
 					}
 				);
-				const classifiedCustomers = classifyCustomers(customers);
-				if (type == 'NEW') {
-					setCustomers(classifiedCustomers.new);
-				} else if (type == 'RISK') {
-					setCustomers(classifiedCustomers.atRisk);
-				} else if (type == 'LOST') {
-					setCustomers(classifiedCustomers.lost);
-				} else if (type == 'DORMANT') {
-					setCustomers(classifiedCustomers.dormant);
-				} else {
-					setCustomers(classifiedCustomers.loyal);
-				}
+				setAllCustomers(customers);
 			} catch (error) {
 				console.error('Error fetching users:', error);
 			}
 		};
 
 		fetchUsers();
-	}, [type]);
+	}, [user]);
+
+	useEffect(() => {
+		const fetchUsers = async () => {
+			if (!allCustomers) return;
+			const classifiedCustomers = classifyCustomers(allCustomers);
+			if (type == 'NEW') {
+				setCustomers(classifiedCustomers.new);
+			} else if (type == 'RISK') {
+				setCustomers(classifiedCustomers.atRisk);
+			} else if (type == 'LOST') {
+				setCustomers(classifiedCustomers.lost);
+			} else if (type == 'DORMANT') {
+				setCustomers(classifiedCustomers.dormant);
+			} else {
+				setCustomers(classifiedCustomers.loyal);
+			}
+		};
+
+		fetchUsers();
+	}, [type, allCustomers]);
 
 	return customers;
 };
